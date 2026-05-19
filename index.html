@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChemoSense — AI-Powered Chemotherapy Monitoring</title>
+    <meta name="description" content="ChemoSense is an AI-powered wearable that monitors chemotherapy side-effects in real-time using ECG, SpO2, temperature and more. Empowering oncologists with predictive insights.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Navigation -->
+    <nav id="main-nav" class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <circle cx="16" cy="16" r="14" stroke="url(#logoGrad)" stroke-width="2.5" fill="none"/>
+                        <path d="M8 16 L12 16 L14 10 L16 22 L18 13 L20 19 L22 16 L24 16" stroke="url(#logoGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <defs><linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#00F0FF"/><stop offset="100%" stop-color="#7B61FF"/></linearGradient></defs>
+                    </svg>
+                </span>
+                <span class="logo-text">ChemoSense</span>
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="#problem" class="nav-link">Problem</a>
+                <a href="#product" class="nav-link">Product</a>
+                <a href="#how-it-works" class="nav-link">How It Works</a>
+                <a href="#dashboard" class="nav-link">Dashboard</a>
+                <a href="#specs" class="nav-link">Specs</a>
+                <a href="#team" class="nav-link">Team</a>
+                <a href="#contact" class="nav-link nav-link-cta magnetic-btn">Get Early Access</a>
+            </div>
+            <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============ SECTION 1: HERO ============ -->
+    <section id="hero" class="section hero-section">
+        <div class="hero-bg-grid"></div>
+        <div class="hero-gradient-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+        <canvas id="ecg-canvas" class="ecg-canvas"></canvas>
+        <canvas id="particles-canvas" class="particles-canvas"></canvas>
+        <div class="hero-content">
+            <div class="hero-badge" data-animate="fade-up">
+                <span class="badge-dot"></span>
+                <span class="badge-text">Revolutionizing Chemotherapy Monitoring</span>
+            </div>
+            <h1 class="hero-title" data-animate="fade-up" data-delay="100">
+                <span class="split-text">Monitor. Predict.</span><br>
+                <span class="gradient-text split-text">Protect Lives.</span>
+            </h1>
+            <p class="hero-subtitle" data-animate="fade-up" data-delay="200">
+                An AI-powered wearable that tracks chemotherapy side-effects in real-time — giving oncologists predictive insights before complications arise.
+            </p>
+            <div class="hero-actions" data-animate="fade-up" data-delay="300">
+                <a href="#product" class="btn btn-primary btn-glow magnetic-btn ripple-btn">
+                    <span>Discover ChemoSense</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a href="#how-it-works" class="btn btn-outline magnetic-btn ripple-btn">How It Works</a>
+            </div>
+            <div class="hero-stats" data-animate="fade-up" data-delay="400">
+                <div class="hero-stat">
+                    <span class="stat-number" data-count="93">0</span><span class="stat-suffix">%</span>
+                    <span class="stat-label">Prediction Accuracy</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="stat-number" data-count="6">0</span>
+                    <span class="stat-label">Vital Signs Tracked</span>
+                </div>
+                <div class="hero-stat-divider"></div>
+                <div class="hero-stat">
+                    <span class="stat-number" data-count="24">0</span><span class="stat-suffix">/7</span>
+                    <span class="stat-label">Continuous Monitoring</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 2: PROBLEM ============ -->
+    <section id="problem" class="section problem-section">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">The Problem</span>
+                <h2 class="section-title">Cancer Treatment Shouldn't Be a<br><span class="gradient-text">Blind Spot</span></h2>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card tilt-card" data-animate="fade-up" data-delay="100">
+                    <div class="card-shine"></div>
+                    <div class="problem-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="#FF4D6A" stroke-width="2" stroke-dasharray="4 4"/><path d="M24 14v14m0 4v2" stroke="#FF4D6A" stroke-width="3" stroke-linecap="round"/></svg>
+                    </div>
+                    <h3>Delayed Detection</h3>
+                    <p>Side effects like cardiotoxicity, neuropathy, and infections are often detected too late — after irreversible damage has occurred.</p>
+                    <div class="problem-stat">
+                        <span class="problem-stat-number counter-up" data-target="40">0</span><span class="problem-stat-suffix">%</span>
+                        <span class="problem-stat-label">of chemo patients face severe, preventable side effects</span>
+                    </div>
+                </div>
+                <div class="problem-card tilt-card" data-animate="fade-up" data-delay="200">
+                    <div class="card-shine"></div>
+                    <div class="problem-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="8" y="12" width="32" height="24" rx="4" stroke="#FFAA33" stroke-width="2"/><path d="M8 20h32M16 28h8" stroke="#FFAA33" stroke-width="2" stroke-linecap="round"/></svg>
+                    </div>
+                    <h3>Fragmented Data</h3>
+                    <p>Patient vitals are only captured during clinic visits. What happens between appointments remains a dangerous unknown.</p>
+                    <div class="problem-stat">
+                        <span class="problem-stat-number counter-up" data-target="98">0</span><span class="problem-stat-suffix">%</span>
+                        <span class="problem-stat-label">of patient time goes unmonitored between visits</span>
+                    </div>
+                </div>
+                <div class="problem-card tilt-card" data-animate="fade-up" data-delay="300">
+                    <div class="card-shine"></div>
+                    <div class="problem-icon">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="18" stroke="#7B61FF" stroke-width="2"/><path d="M24 14v10l6 6" stroke="#7B61FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h3>Reactive, Not Proactive</h3>
+                    <p>Current systems react to emergencies rather than predicting them. Oncologists need foresight, not hindsight.</p>
+                    <div class="problem-stat">
+                        <span class="problem-stat-number">$30B</span><span class="problem-stat-suffix">+</span>
+                        <span class="problem-stat-label">annual cost of emergency chemo complications</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 3: PRODUCT INTRO ============ -->
+    <section id="product" class="section product-section">
+        <div class="container">
+            <div class="product-intro" data-animate="fade-up">
+                <span class="section-tag">The Solution</span>
+                <h2 class="section-title">Introducing <span class="gradient-text">ChemoSense</span></h2>
+                <p class="section-description">A non-invasive, AI-driven wearable device designed specifically for chemotherapy patients. Raw biometric data transformed into actionable medical intelligence — in real time.</p>
+            </div>
+            <div class="product-showcase" data-animate="scale-in">
+                <div class="product-image-wrapper">
+                    <div class="product-glow"></div>
+                    <div class="product-rings">
+                        <div class="ring ring-1"></div>
+                        <div class="ring ring-2"></div>
+                        <div class="ring ring-3"></div>
+                    </div>
+                    <div class="product-device" id="product-device">
+                        <div class="device-band"></div>
+                        <div class="device-screen">
+                            <div class="device-ecg-mini">
+                                <svg viewBox="0 0 200 60" class="mini-ecg">
+                                    <path class="mini-ecg-line" d="M0,30 L30,30 L40,10 L50,50 L60,25 L70,35 L80,30 L110,30 L120,10 L130,50 L140,25 L150,35 L160,30 L200,30" fill="none" stroke="#00F0FF" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="device-stats-mini">
+                                <div class="mini-stat"><span class="mini-val">72</span><span class="mini-unit">BPM</span></div>
+                                <div class="mini-stat"><span class="mini-val">98</span><span class="mini-unit">SpO₂</span></div>
+                                <div class="mini-stat"><span class="mini-val">36.8</span><span class="mini-unit">°C</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-features-orbit">
+                    <div class="orbit-item orbit-item-1" data-animate="fade-up" data-delay="200">
+                        <div class="orbit-dot"></div><span>Medical-Grade ECG</span>
+                    </div>
+                    <div class="orbit-item orbit-item-2" data-animate="fade-up" data-delay="300">
+                        <div class="orbit-dot" style="background:var(--accent-purple)"></div><span>SpO₂ Monitoring</span>
+                    </div>
+                    <div class="orbit-item orbit-item-3" data-animate="fade-up" data-delay="400">
+                        <div class="orbit-dot" style="background:var(--accent-pink)"></div><span>Body Temperature</span>
+                    </div>
+                    <div class="orbit-item orbit-item-4" data-animate="fade-up" data-delay="500">
+                        <div class="orbit-dot" style="background:var(--accent-green)"></div><span>AI Risk Scoring</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 4: WHAT IT TRACKS ============ -->
+    <section id="tracks" class="section tracks-section">
+        <div class="section-bg-glow right"></div>
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">Comprehensive Monitoring</span>
+                <h2 class="section-title">What ChemoSense <span class="gradient-text">Tracks</span></h2>
+                <p class="section-description">Six critical vital signs captured continuously, giving oncologists a complete picture of patient health.</p>
+            </div>
+            <div class="tracks-grid">
+                <div class="track-card tilt-card" data-animate="fade-up" data-delay="100">
+                    <div class="card-shine"></div>
+                    <div class="track-icon-wrap">
+                        <div class="track-icon">
+                            <svg viewBox="0 0 40 40"><path d="M5 20 L10 20 L13 8 L17 32 L21 14 L25 26 L28 20 L35 20" stroke="#00F0FF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                    </div>
+                    <h3>ECG / Heart Rate</h3>
+                    <p>Continuous single-lead ECG monitoring detects arrhythmias, QT prolongation, and cardiotoxicity markers.</p>
+                    <div class="track-visual"><div class="track-ecg-wave"></div></div>
+                </div>
+                <div class="track-card tilt-card" data-animate="fade-up" data-delay="150">
+                    <div class="card-shine"></div>
+                    <div class="track-icon-wrap">
+                        <div class="track-icon track-icon-spo2">
+                            <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="12" stroke="#7B61FF" stroke-width="2" fill="none"/><circle cx="20" cy="20" r="5" fill="#7B61FF" opacity="0.3"/><text x="20" y="24" text-anchor="middle" fill="#7B61FF" font-size="10" font-weight="700">O₂</text></svg>
+                        </div>
+                    </div>
+                    <h3>SpO₂ Levels</h3>
+                    <p>Blood oxygen saturation tracked continuously to detect respiratory complications early.</p>
+                    <div class="track-bar"><div class="track-bar-fill animated-bar" data-width="98"><span>98%</span></div></div>
+                </div>
+                <div class="track-card tilt-card" data-animate="fade-up" data-delay="200">
+                    <div class="card-shine"></div>
+                    <div class="track-icon-wrap">
+                        <div class="track-icon track-icon-temp">
+                            <svg viewBox="0 0 40 40"><rect x="17" y="6" width="6" height="22" rx="3" stroke="#FF4D6A" stroke-width="2" fill="none"/><circle cx="20" cy="30" r="5" stroke="#FF4D6A" stroke-width="2" fill="#FF4D6A" opacity="0.3"/></svg>
+                        </div>
+                    </div>
+                    <h3>Body Temperature</h3>
+                    <p>Infrared skin temperature sensor catches febrile episodes — a key sign of neutropenic infections.</p>
+                    <div class="track-temp"><div class="temp-gauge"><div class="temp-fill animated-bar" data-width="70"></div></div><span class="temp-val">36.8°C</span></div>
+                </div>
+                <div class="track-card tilt-card" data-animate="fade-up" data-delay="250">
+                    <div class="card-shine"></div>
+                    <div class="track-icon-wrap">
+                        <div class="track-icon track-icon-hrv">
+                            <svg viewBox="0 0 40 40"><path d="M10 25 Q15 10 20 20 Q25 30 30 15" stroke="#FFAA33" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+                        </div>
+                    </div>
+                    <h3>Heart Rate Variability</h3>
+                    <p>HRV analysis reveals autonomic nervous system stress and neuropathy onset patterns.</p>
+                    <div class="track-hrv-dots"><span style="--h:60%"></span><span style="--h:80%"></span><span style="--h:40%"></span><span style="--h:90%"></span><span style="--h:50%"></span><span style="--h:70%"></span><span style="--h:85%"></span><span style="--h:45%"></span></div>
+                </div>
+                <div class="track-card tilt-card" data-animate="fade-up" data-delay="300">
+                    <div class="card-shine"></div>
+                    <div class="track-icon-wrap">
+                        <div class="track-icon track-icon-motion">
+                            <svg viewBox="0 0 40 40"><path d="M12 28 L16 20 L20 24 L24 12 L28 18" stroke="#00D68F" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="28" r="2" fill="#00D68F"/><circle cx="28" cy="18" r="2" fill="#00D68F"/></svg>
+                        </div>
+                    </div>
+                    <h3>Motion & Activity</h3>
+                    <p>3-axis accelerometer & gyroscope detect fatigue, tremors, and mobility degradation.</p>
+                    <div class="track-activity-bars"><div class="act-bar" style="--bh:30%"></div><div class="act-bar" style="--bh:60%"></div><div class="act-bar" style="--bh:45%"></div><div class="act-bar" style="--bh:80%"></div><div class="act-bar" style="--bh:55%"></div><div class="act-bar" style="--bh:70%"></div><div class="act-bar" style="--bh:40%"></div></div>
+                </div>
+                <div class="track-card tilt-card" data-animate="fade-up" data-delay="350">
+                    <div class="card-shine"></div>
+                    <div class="track-icon-wrap">
+                        <div class="track-icon track-icon-gsr">
+                            <svg viewBox="0 0 40 40"><path d="M20 8 C20 8 10 18 10 24 C10 30 15 34 20 34 C25 34 30 30 30 24 C30 18 20 8 20 8Z" stroke="#00B4D8" stroke-width="2" fill="none"/></svg>
+                        </div>
+                    </div>
+                    <h3>Galvanic Skin Response</h3>
+                    <p>GSR sensors detect stress, pain response, and autonomic nervous system activity changes.</p>
+                    <div class="track-gsr-wave"><svg viewBox="0 0 120 30"><path d="M0,15 Q15,5 30,15 Q45,25 60,15 Q75,5 90,15 Q105,25 120,15" stroke="#00B4D8" stroke-width="1.5" fill="none" opacity="0.6"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 5: HOW IT WORKS ============ -->
+    <section id="how-it-works" class="section how-section">
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">Workflow</span>
+                <h2 class="section-title">How <span class="gradient-text">It Works</span></h2>
+            </div>
+            <div class="how-timeline">
+                <div class="how-line">
+                    <div class="how-line-progress" id="how-line-progress"></div>
+                </div>
+                <div class="how-step" data-animate="fade-right" data-delay="100">
+                    <div class="how-step-number"><span>01</span></div>
+                    <div class="how-step-content tilt-card">
+                        <div class="card-shine"></div>
+                        <div class="how-step-icon"><svg width="40" height="40" viewBox="0 0 40 40"><rect x="8" y="4" width="24" height="32" rx="4" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="20" cy="28" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></div>
+                        <h3>Patient Wears the Device</h3>
+                        <p>Comfortable, lightweight wearable designed for 24/7 use throughout the entire treatment cycle.</p>
+                    </div>
+                </div>
+                <div class="how-step" data-animate="fade-left" data-delay="200">
+                    <div class="how-step-number"><span>02</span></div>
+                    <div class="how-step-content tilt-card">
+                        <div class="card-shine"></div>
+                        <div class="how-step-icon"><svg width="40" height="40" viewBox="0 0 40 40"><path d="M8 20 L14 20 L17 10 L20 30 L23 15 L26 25 L29 20 L35 20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+                        <h3>Continuous Data Collection</h3>
+                        <p>Six vital parameters captured simultaneously via medical-grade sensors. Real-time streaming via BLE to cloud.</p>
+                    </div>
+                </div>
+                <div class="how-step" data-animate="fade-right" data-delay="300">
+                    <div class="how-step-number"><span>03</span></div>
+                    <div class="how-step-content tilt-card">
+                        <div class="card-shine"></div>
+                        <div class="how-step-icon"><svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" stroke="currentColor" stroke-width="2" fill="none"/><path d="M14 20 L18 24 L26 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></div>
+                        <h3>AI Analysis & Scoring</h3>
+                        <p>Proprietary ML models generate a ChemoSafe Score™ — a real-time risk assessment of treatment complications.</p>
+                    </div>
+                </div>
+                <div class="how-step" data-animate="fade-left" data-delay="400">
+                    <div class="how-step-number"><span>04</span></div>
+                    <div class="how-step-content tilt-card">
+                        <div class="card-shine"></div>
+                        <div class="how-step-icon"><svg width="40" height="40" viewBox="0 0 40 40"><path d="M10 30 L10 18 L16 18 L16 30M18 30 L18 12 L24 12 L24 30M26 30 L26 22 L32 22 L32 30" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                        <h3>Oncologist Dashboard</h3>
+                        <p>Real-time alerts, trend analytics, and predictive reports — enabling proactive intervention before complications arise.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 6: AI SCORING ============ -->
+    <section id="ai-scoring" class="section ai-section">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="ai-layout">
+                <div class="ai-text" data-animate="fade-right">
+                    <span class="section-tag">AI Engine</span>
+                    <h2 class="section-title">The <span class="gradient-text">ChemoSafe Score™</span></h2>
+                    <p class="section-description">Our proprietary AI engine processes thousands of data points per minute to produce a single, actionable risk score.</p>
+                    <div class="ai-features">
+                        <div class="ai-feature"><div class="ai-feature-icon">🧠</div><div><h4>Multi-Parameter Fusion</h4><p>Combines ECG, SpO₂, temperature, HRV, motion, and GSR into a unified risk model.</p></div></div>
+                        <div class="ai-feature"><div class="ai-feature-icon">⚡</div><div><h4>Real-Time Inference</h4><p>Edge AI on-device for latency-critical alerts. Cloud ML for deep trend analysis.</p></div></div>
+                        <div class="ai-feature"><div class="ai-feature-icon">🎯</div><div><h4>93% Prediction Accuracy</h4><p>Trained on clinical data from 10,000+ chemotherapy sessions across multiple cancer types.</p></div></div>
+                    </div>
+                </div>
+                <div class="ai-visual" data-animate="fade-left">
+                    <div class="score-card tilt-card">
+                        <div class="card-shine"></div>
+                        <div class="score-ring-container">
+                            <svg class="score-ring" viewBox="0 0 200 200">
+                                <circle cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="10"/>
+                                <circle cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="20"/>
+                                <circle class="score-ring-bg" cx="100" cy="100" r="85" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="12" stroke-dasharray="8 4"/>
+                                <circle class="score-ring-fill" cx="100" cy="100" r="85" fill="none" stroke="url(#scoreGrad)" stroke-width="12" stroke-linecap="round" stroke-dasharray="534" stroke-dashoffset="534" transform="rotate(-90 100 100)"/>
+                                <defs><linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00F0FF"/><stop offset="50%" stop-color="#7B61FF"/><stop offset="100%" stop-color="#00D68F"/></linearGradient></defs>
+                            </svg>
+                            <div class="score-value">
+                                <span class="score-number" id="score-counter">0</span>
+                                <span class="score-label">ChemoSafe Score™</span>
+                                <span class="score-status">Low Risk</span>
+                            </div>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="score-param"><span class="param-name">Cardiac Health</span><div class="param-bar"><div class="param-fill" data-pw="92"></div></div><span class="param-val">92%</span></div>
+                            <div class="score-param"><span class="param-name">Respiratory</span><div class="param-bar"><div class="param-fill" data-pw="88"></div></div><span class="param-val">88%</span></div>
+                            <div class="score-param"><span class="param-name">Immune Response</span><div class="param-bar"><div class="param-fill" data-pw="76"></div></div><span class="param-val">76%</span></div>
+                            <div class="score-param"><span class="param-name">Neuro Function</span><div class="param-bar"><div class="param-fill" data-pw="85"></div></div><span class="param-val">85%</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 7: DASHBOARD ============ -->
+    <section id="dashboard" class="section dashboard-section">
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">Dashboard</span>
+                <h2 class="section-title">The <span class="gradient-text">Command Center</span></h2>
+                <p class="section-description">A powerful, intuitive dashboard for oncologists to monitor all patients at a glance.</p>
+            </div>
+            <div class="dashboard-mockup" data-animate="scale-in">
+                <div class="dashboard-frame" id="dashboard-frame">
+                    <div class="dashboard-topbar">
+                        <div class="dash-dots"><span></span><span></span><span></span></div>
+                        <span class="dash-title">ChemoSense — Oncologist Portal</span>
+                        <div class="dash-live-badge"><span class="live-dot"></span> Live</div>
+                    </div>
+                    <div class="dashboard-body">
+                        <div class="dash-sidebar">
+                            <div class="dash-nav-item active"><svg width="18" height="18" viewBox="0 0 18 18"><rect x="1" y="1" width="7" height="7" rx="1.5" fill="currentColor"/><rect x="10" y="1" width="7" height="7" rx="1.5" fill="currentColor" opacity="0.5"/><rect x="1" y="10" width="7" height="7" rx="1.5" fill="currentColor" opacity="0.5"/><rect x="10" y="10" width="7" height="7" rx="1.5" fill="currentColor" opacity="0.3"/></svg> Overview</div>
+                            <div class="dash-nav-item">📊 Analytics</div>
+                            <div class="dash-nav-item">👥 Patients</div>
+                            <div class="dash-nav-item">🔔 Alerts <span class="dash-badge">2</span></div>
+                            <div class="dash-nav-item">⚙️ Settings</div>
+                        </div>
+                        <div class="dash-main">
+                            <div class="dash-metrics">
+                                <div class="dash-metric"><span class="dm-value counter-up" data-target="24">0</span><span class="dm-label">Active Patients</span><span class="dm-change positive">+3 this week</span></div>
+                                <div class="dash-metric alert-metric"><span class="dm-value">2</span><span class="dm-label">High Risk Alerts</span><span class="dm-change negative">⚠ Needs attention</span></div>
+                                <div class="dash-metric"><span class="dm-value counter-up" data-target="87">0</span><span class="dm-label">Avg. ChemoSafe Score</span><span class="dm-change positive">↑ 4 from last week</span></div>
+                            </div>
+                            <div class="dash-chart-area">
+                                <div class="dash-chart-header"><h4>Patient Vitals — Last 7 Days</h4><div class="dash-chart-tabs"><span class="active" data-tab="ecg">ECG</span><span data-tab="spo2">SpO₂</span><span data-tab="temp">Temp</span></div></div>
+                                <div class="dash-chart">
+                                    <svg viewBox="0 0 600 120" class="dash-ecg-svg">
+                                        <defs><linearGradient id="dashEcgGrad" x1="0" y1="0" x2="600" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#00F0FF"/><stop offset="100%" stop-color="#7B61FF"/></linearGradient></defs>
+                                        <path class="dash-ecg-line" d="M0,60 L40,60 L55,30 L70,90 L85,50 L100,70 L115,60 L155,60 L170,25 L185,95 L200,45 L215,75 L230,60 L270,60 L285,35 L300,85 L315,55 L330,65 L345,60 L385,60 L400,20 L415,100 L430,40 L445,70 L460,60 L500,60 L515,30 L530,90 L545,50 L560,70 L575,60 L600,60" fill="none" stroke="url(#dashEcgGrad)" stroke-width="2.5"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="dash-patients-mini">
+                                <h4>Recent Patient Activity</h4>
+                                <div class="dash-patient-row interactive-row"><div class="dp-avatar" style="background:linear-gradient(135deg,#00F0FF,#7B61FF)">AK</div><div class="dp-info"><span class="dp-name">Anita K.</span><span class="dp-detail">Breast Cancer — Cycle 4</span></div><div class="dp-score good">92</div></div>
+                                <div class="dash-patient-row interactive-row"><div class="dp-avatar" style="background:linear-gradient(135deg,#FFAA33,#FF4D6A)">RP</div><div class="dp-info"><span class="dp-name">Rajesh P.</span><span class="dp-detail">Lung Cancer — Cycle 2</span></div><div class="dp-score warning">67</div></div>
+                                <div class="dash-patient-row interactive-row"><div class="dp-avatar" style="background:linear-gradient(135deg,#00D68F,#00B4D8)">SM</div><div class="dp-info"><span class="dp-name">Sneha M.</span><span class="dp-detail">Leukemia — Cycle 6</span></div><div class="dp-score good">88</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 8: HARDWARE SPECS ============ -->
+    <section id="specs" class="section specs-section">
+        <div class="section-bg-glow right"></div>
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">Hardware</span>
+                <h2 class="section-title">Built for <span class="gradient-text">Medical Precision</span></h2>
+            </div>
+            <div class="specs-layout">
+                <div class="specs-visual" data-animate="fade-right">
+                    <div class="specs-device-3d">
+                        <div class="spec-line spec-line-1"><div class="spec-dot"></div><div class="spec-connector"></div><div class="spec-label">AD8232 ECG AFE</div></div>
+                        <div class="spec-line spec-line-2"><div class="spec-dot"></div><div class="spec-connector"></div><div class="spec-label">MAX30102 SpO₂</div></div>
+                        <div class="spec-line spec-line-3"><div class="spec-dot"></div><div class="spec-connector"></div><div class="spec-label">MLX90614 IR Temp</div></div>
+                        <div class="spec-line spec-line-4"><div class="spec-dot"></div><div class="spec-connector"></div><div class="spec-label">MPU6050 IMU</div></div>
+                        <div class="device-render"><div class="render-body"><div class="render-screen"><div class="render-pulse"></div></div></div></div>
+                    </div>
+                </div>
+                <div class="specs-table" data-animate="fade-left">
+                    <div class="spec-row interactive-row"><span class="spec-key">Processor</span><span class="spec-val">ESP32-S3 (Dual-core, 240MHz)</span></div>
+                    <div class="spec-row interactive-row"><span class="spec-key">ECG Sensor</span><span class="spec-val">AD8232 Single-Lead AFE</span></div>
+                    <div class="spec-row interactive-row"><span class="spec-key">SpO₂ / Heart Rate</span><span class="spec-val">MAX30102 PPG</span></div>
+                    <div class="spec-row interactive-row"><span class="spec-key">Temperature</span><span class="spec-val">MLX90614 Infrared (±0.2°C)</span></div>
+                    <div class="spec-row interactive-row"><span class="spec-key">Motion</span><span class="spec-val">MPU6050 6-Axis IMU</span></div>
+                    <div class="spec-row interactive-row"><span class="spec-key">GSR</span><span class="spec-val">Grove GSR Sensor Module</span></div>
+                    <div class="spec-row interactive-row"><span class="spec-key">Connectivity</span><span class="spec-val">BLE 5.0 + Wi-Fi</span></div>
+                    <div class="spec-row interactive-row"><span class="spec-key">Battery</span><span class="spec-val">500mAh LiPo (48h life)</span></div>
+                    <div class="spec-row interactive-row"><span class="spec-key">Weight</span><span class="spec-val">38g (device only)</span></div>
+                    <div class="spec-row interactive-row"><span class="spec-key">Water Resistance</span><span class="spec-val">IP67 Rated</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 9: COMPETITIVE TABLE ============ -->
+    <section id="comparison" class="section comparison-section">
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">Why ChemoSense</span>
+                <h2 class="section-title">How We <span class="gradient-text">Compare</span></h2>
+            </div>
+            <div class="comparison-table-wrapper" data-animate="fade-up" data-delay="200">
+                <table class="comparison-table" id="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th class="highlight-col">ChemoSense</th>
+                            <th>Apple Watch</th>
+                            <th>Fitbit Sense</th>
+                            <th>Hospital Monitors</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>ECG Monitoring</td><td class="highlight-col"><span class="check">✓</span> Continuous</td><td><span class="partial">~</span> On-demand</td><td><span class="cross">✗</span></td><td><span class="check">✓</span> Continuous</td></tr>
+                        <tr><td>SpO₂ Tracking</td><td class="highlight-col"><span class="check">✓</span> Real-time</td><td><span class="check">✓</span> Periodic</td><td><span class="check">✓</span> Periodic</td><td><span class="check">✓</span> Real-time</td></tr>
+                        <tr><td>Body Temperature</td><td class="highlight-col"><span class="check">✓</span> IR Sensor</td><td><span class="partial">~</span> Wrist temp</td><td><span class="check">✓</span> Skin temp</td><td><span class="check">✓</span></td></tr>
+                        <tr><td>AI Risk Prediction</td><td class="highlight-col"><span class="check">✓</span> ChemoSafe™</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
+                        <tr><td>Chemo-Specific Design</td><td class="highlight-col"><span class="check">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td></tr>
+                        <tr><td>Doctor Dashboard</td><td class="highlight-col"><span class="check">✓</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="partial">~</span> Basic</td></tr>
+                        <tr><td>Wearable & Portable</td><td class="highlight-col"><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td></tr>
+                        <tr><td>Open API / Integration</td><td class="highlight-col"><span class="check">✓</span> FHIR Ready</td><td><span class="partial">~</span> HealthKit</td><td><span class="partial">~</span> Limited</td><td><span class="cross">✗</span> Proprietary</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 10: FOUNDER STORY ============ -->
+    <section id="founder" class="section founder-section">
+        <div class="container">
+            <div class="founder-layout">
+                <div class="founder-image" data-animate="fade-right">
+                    <div class="founder-img-frame">
+                        <div class="founder-placeholder"><div class="founder-initials">SI</div></div>
+                        <div class="founder-badge-card"><span class="fbc-title">Founder & CEO</span></div>
+                    </div>
+                </div>
+                <div class="founder-text" data-animate="fade-left">
+                    <span class="section-tag">Our Story</span>
+                    <h2 class="section-title">Built from <span class="gradient-text">Personal Conviction</span></h2>
+                    <blockquote class="founder-quote">"I watched my grandmother suffer silently through chemotherapy — side effects detected too late, complications that could have been prevented. ChemoSense was born from the belief that no patient should face treatment alone in the dark."</blockquote>
+                    <p class="founder-bio">ChemoSense was founded by a team of biomedical engineers and AI researchers who believe technology should save lives — not just track steps. Our mission is to make chemotherapy safer, smarter, and more humane.</p>
+                    <div class="founder-values">
+                        <div class="fv-item magnetic-btn"><span class="fv-icon">💡</span><span>Innovation</span></div>
+                        <div class="fv-item magnetic-btn"><span class="fv-icon">❤️</span><span>Empathy</span></div>
+                        <div class="fv-item magnetic-btn"><span class="fv-icon">🔬</span><span>Science</span></div>
+                        <div class="fv-item magnetic-btn"><span class="fv-icon">🌍</span><span>Impact</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 11: TEAM ============ -->
+    <section id="team" class="section team-section">
+        <div class="section-bg-glow"></div>
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">The Team</span>
+                <h2 class="section-title">Passionate <span class="gradient-text">Minds</span></h2>
+                <p class="section-description">A multidisciplinary team of engineers, designers, and healthcare advocates.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card tilt-card" data-animate="fade-up" data-delay="100">
+                    <div class="card-shine"></div>
+                    <div class="team-avatar" style="background:linear-gradient(135deg,#00F0FF,#7B61FF)"><span>SI</span></div>
+                    <h3>Syed Ibrahim</h3><p class="team-role">Founder & CEO</p>
+                    <p class="team-bio">Biomedical Engineering background with a passion for AI-driven healthcare innovation.</p>
+                    <div class="team-social"><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="Twitter">𝕏</a></div>
+                </div>
+                <div class="team-card tilt-card" data-animate="fade-up" data-delay="200">
+                    <div class="card-shine"></div>
+                    <div class="team-avatar" style="background:linear-gradient(135deg,#7B61FF,#FF4D6A)"><span>AR</span></div>
+                    <h3>Aarav Reddy</h3><p class="team-role">CTO — Hardware Lead</p>
+                    <p class="team-bio">Embedded systems expert. Previously designed wearable medical devices at Medtronic.</p>
+                    <div class="team-social"><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="GitHub">GH</a></div>
+                </div>
+                <div class="team-card tilt-card" data-animate="fade-up" data-delay="300">
+                    <div class="card-shine"></div>
+                    <div class="team-avatar" style="background:linear-gradient(135deg,#FFAA33,#FF4D6A)"><span>PS</span></div>
+                    <h3>Priya Sharma</h3><p class="team-role">AI/ML Lead</p>
+                    <p class="team-bio">Data scientist specializing in clinical ML models. Published in Nature Digital Medicine.</p>
+                    <div class="team-social"><a href="#" aria-label="LinkedIn">in</a><a href="#" aria-label="Scholar">📄</a></div>
+                </div>
+                <div class="team-card tilt-card" data-animate="fade-up" data-delay="400">
+                    <div class="card-shine"></div>
+                    <div class="team-avatar" style="background:linear-gradient(135deg,#00D68F,#00B4D8)"><span>NK</span></div>
+                    <h3>Neha Kapoor</h3><p class="team-role">Clinical Advisor</p>
+                    <p class="team-bio">Oncologist with 12+ years of experience. Bridges the gap between tech and patient care.</p>
+                    <div class="team-social"><a href="#" aria-label="LinkedIn">in</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 12: IMPACT ============ -->
+    <section id="impact" class="section impact-section">
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">Vision</span>
+                <h2 class="section-title">Impact & <span class="gradient-text">Scalability</span></h2>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-card tilt-card" data-animate="fade-up" data-delay="100"><div class="card-shine"></div><div class="impact-number"><span class="counter-up" data-target="19">0</span>.3M</div><p>new cancer cases diagnosed globally each year require chemotherapy monitoring.</p></div>
+                <div class="impact-card tilt-card" data-animate="fade-up" data-delay="200"><div class="card-shine"></div><div class="impact-number">10×</div><p>reduction in emergency interventions with early AI-driven predictions.</p></div>
+                <div class="impact-card tilt-card" data-animate="fade-up" data-delay="300"><div class="card-shine"></div><div class="impact-number">SaaS</div><p>B2B model — hospitals subscribe for dashboard access, data analytics, and AI insights.</p></div>
+                <div class="impact-card tilt-card" data-animate="fade-up" data-delay="200"><div class="card-shine"></div><div class="impact-number">FDA</div><p>Pathway to FDA 510(k) clearance for medical-grade wearable classification.</p></div>
+                <div class="impact-card tilt-card" data-animate="fade-up" data-delay="300"><div class="card-shine"></div><div class="impact-number">HIPAA</div><p>Fully HIPAA-compliant data infrastructure with end-to-end encryption.</p></div>
+            </div>
+            <div class="impact-roadmap" data-animate="fade-up" data-delay="400">
+                <h3>Scalability Roadmap</h3>
+                <div class="roadmap-bar">
+                    <div class="roadmap-connector"></div>
+                    <div class="roadmap-step active"><span class="rs-dot"></span><span class="rs-label">Prototype</span><span class="rs-date">2024</span></div>
+                    <div class="roadmap-step active"><span class="rs-dot"></span><span class="rs-label">Clinical Trials</span><span class="rs-date">2025</span></div>
+                    <div class="roadmap-step"><span class="rs-dot"></span><span class="rs-label">India Launch</span><span class="rs-date">2026</span></div>
+                    <div class="roadmap-step"><span class="rs-dot"></span><span class="rs-label">Global Scale</span><span class="rs-date">2027</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 13: BADGES ============ -->
+    <section id="badges" class="section badges-section">
+        <div class="container">
+            <div class="section-header" data-animate="fade-up">
+                <span class="section-tag">Recognition</span>
+                <h2 class="section-title">Awards & <span class="gradient-text">Competitions</span></h2>
+            </div>
+            <div class="badges-marquee">
+                <div class="badges-track">
+                    <div class="badge-card"><div class="badge-icon">🏆</div><h3>SIH 2024</h3><p>Smart India Hackathon — National Finalist</p></div>
+                    <div class="badge-card"><div class="badge-icon">🥇</div><h3>IEEE Innovate</h3><p>Best Healthcare Innovation — Gold Award</p></div>
+                    <div class="badge-card"><div class="badge-icon">🚀</div><h3>NASSCOM DeepTech</h3><p>Top 25 Health-Tech Startups India</p></div>
+                    <div class="badge-card"><div class="badge-icon">🎯</div><h3>Biodesign Challenge</h3><p>Asia-Pacific Regional Winner</p></div>
+                    <div class="badge-card"><div class="badge-icon">⭐</div><h3>BIRAC BIG Grant</h3><p>Biotechnology Ignition Grant Awardee</p></div>
+                    <div class="badge-card"><div class="badge-icon">🌟</div><h3>MedTech World</h3><p>Most Promising MedTech Startup 2025</p></div>
+                    <!-- duplicates for infinite scroll -->
+                    <div class="badge-card"><div class="badge-icon">🏆</div><h3>SIH 2024</h3><p>Smart India Hackathon — National Finalist</p></div>
+                    <div class="badge-card"><div class="badge-icon">🥇</div><h3>IEEE Innovate</h3><p>Best Healthcare Innovation — Gold Award</p></div>
+                    <div class="badge-card"><div class="badge-icon">🚀</div><h3>NASSCOM DeepTech</h3><p>Top 25 Health-Tech Startups India</p></div>
+                    <div class="badge-card"><div class="badge-icon">🎯</div><h3>Biodesign Challenge</h3><p>Asia-Pacific Regional Winner</p></div>
+                    <div class="badge-card"><div class="badge-icon">⭐</div><h3>BIRAC BIG Grant</h3><p>Biotechnology Ignition Grant Awardee</p></div>
+                    <div class="badge-card"><div class="badge-icon">🌟</div><h3>MedTech World</h3><p>Most Promising MedTech Startup 2025</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SECTION 14: FOOTER ============ -->
+    <footer id="contact" class="footer-section">
+        <div class="footer-cta" data-animate="fade-up">
+            <h2>Ready to Transform<br><span class="gradient-text">Chemotherapy Care?</span></h2>
+            <p>Join our early access program and help us save lives with smarter monitoring.</p>
+            <div class="footer-cta-actions">
+                <a href="mailto:hello@chemosense.health" class="btn btn-primary btn-glow magnetic-btn ripple-btn"><span>Get Early Access</span><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                <a href="mailto:invest@chemosense.health" class="btn btn-outline magnetic-btn ripple-btn">Partner With Us</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-grid">
+                <div class="footer-brand">
+                    <div class="nav-logo"><span class="logo-icon"><svg width="28" height="28" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="url(#logoGrad2)" stroke-width="2.5" fill="none"/><path d="M8 16 L12 16 L14 10 L16 22 L18 13 L20 19 L22 16 L24 16" stroke="url(#logoGrad2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/><defs><linearGradient id="logoGrad2" x1="0" y1="0" x2="32" y2="32"><stop offset="0%" stop-color="#00F0FF"/><stop offset="100%" stop-color="#7B61FF"/></linearGradient></defs></svg></span><span class="logo-text">ChemoSense</span></div>
+                    <p>AI-powered wearable for chemotherapy side-effect monitoring. Making cancer treatment safer.</p>
+                </div>
+                <div class="footer-links-group"><h4>Product</h4><a href="#product">Overview</a><a href="#tracks">Features</a><a href="#specs">Hardware</a><a href="#dashboard">Dashboard</a></div>
+                <div class="footer-links-group"><h4>Company</h4><a href="#founder">Our Story</a><a href="#team">Team</a><a href="#badges">Awards</a><a href="#impact">Impact</a></div>
+                <div class="footer-links-group"><h4>Connect</h4><a href="mailto:hello@chemosense.health">hello@chemosense.health</a><a href="#">LinkedIn</a><a href="#">Twitter / X</a><a href="#">Instagram</a></div>
+            </div>
+            <div class="footer-bar">
+                <span>© 2025 ChemoSense Health Technologies. All rights reserved.</span>
+                <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
